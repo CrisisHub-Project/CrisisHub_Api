@@ -4,7 +4,7 @@ import com.crisishub_api.domain.user.Role;
 import lombok.Builder;
 
 @Builder
-public record UserCreateResponseDto(
+public record UserResponseDto(
 
         Long id,
 

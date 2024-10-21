@@ -1,29 +1,26 @@
 package com.crisishub_api.infrastructure.usercontroller;
 
 import com.crisishub_api.domain.user.UserFacade;
-import com.crisishub_api.domain.user.dto.UserCreateDto;
-import com.crisishub_api.domain.user.dto.UserCreateResponseDto;
-import jdk.jfr.Category;
+import com.crisishub_api.domain.user.dto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/public")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 public class UserController {
 
     private final UserFacade userFacade;
 
-    @PostMapping("/register")
-    public ResponseEntity<UserCreateResponseDto> registerUser(@RequestBody UserCreateDto userCreateDto) {
-        UserCreateResponseDto userCreateResponseDto = userFacade.registerUser(userCreateDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userCreateResponseDto);
+    @GetMapping("/current-user")
+    @ResponseBody
+    public ResponseEntity<UserResponseDto> getCurrentUser(@AuthenticationPrincipal UserDetails principal) {
+        String username = principal.getUsername();
+        UserResponseDto userByUsername = userFacade.findUserByUsername(username);
+        return ResponseEntity.ok(userByUsername);
     }
-
-
-
 }

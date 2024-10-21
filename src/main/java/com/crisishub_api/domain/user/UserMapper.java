@@ -1,12 +1,12 @@
 package com.crisishub_api.domain.user;
 
 import com.crisishub_api.domain.user.dto.UserCreateDto;
-import com.crisishub_api.domain.user.dto.UserCreateResponseDto;
+import com.crisishub_api.domain.user.dto.UserResponseDto;
 
 public class UserMapper {
 
-    static UserCreateResponseDto mapToUserCreateResponseDto(User user) {
-        return UserCreateResponseDto.builder().id(user.getId()).username(user.getUsername()).email(user.getEmail()).role(user.getRole()).build();
+    static UserResponseDto mapToUserCreateResponseDto(User user) {
+        return UserResponseDto.builder().id(user.getId()).username(user.getUsername()).email(user.getEmail()).role(user.getRole()).build();
     }
 
    static User mapToUserEntity(UserCreateDto userCreateDto) {
