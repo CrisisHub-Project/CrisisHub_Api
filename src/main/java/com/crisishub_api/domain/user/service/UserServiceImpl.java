@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user, Long userId) {
-        User userDB = userRepository.findById(userId).get();
+        User userDB = userRepository.findById(userId).orElseThrow();
 
         if (Objects.nonNull(user.getUserName()) && !"".equalsIgnoreCase(user.getUserName())) {
             userDB.setUserName(user.getUserName());
