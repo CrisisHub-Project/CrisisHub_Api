@@ -26,15 +26,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user, Long userId) {
-//        User userDB = userRepository.findById(userId).get();
-//
-//        if (Objects.nonNull(user.getUserName()) && !"".equalsIgnoreCase(user.getUserName())) {
-//            userDB.setUserName(user.getUserName());
-//        } else if (Objects.nonNull(user.getUserSurname()) && !"".equalsIgnoreCase(user.getUserSurname())) {
-//            userDB.setUserSurname(user.getUserSurname());
-//        } else if
+        User userDB = userRepository.findById(userId).get();
 
-        return null;
+        if (Objects.nonNull(user.getUserName()) && !"".equalsIgnoreCase(user.getUserName())) {
+            userDB.setUserName(user.getUserName());
+        } else if (Objects.nonNull(user.getUserSurname()) && !"".equalsIgnoreCase(user.getUserSurname())) {
+            userDB.setUserSurname(user.getUserSurname());
+        } else if (user.getUserPhoneNumber()>0){
+            userDB.setUserPhoneNumber(user.getUserPhoneNumber());
+        } else if (Objects.nonNull(user.getUserAdress()) && !"".equalsIgnoreCase(user.getUserAdress())) {
+            userDB.setUserAdress(user.getUserAdress());
+        }
+
+        return userDB;
     }
 
     @Override

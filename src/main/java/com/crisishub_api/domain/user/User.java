@@ -40,7 +40,6 @@ public class User {
         return userAdress;
     }
 
-
     public void setUserName(String userName) {
         this.userName = userName;
     }

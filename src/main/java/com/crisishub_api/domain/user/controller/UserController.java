@@ -17,6 +17,7 @@ public class UserController {
     public User saveDepartment(@RequestBody User user) {
         return userService.saveUser(user);
     }
+
     @GetMapping("/users")
     public List<User> fetchUserList(){
         return userService.fetchUserList();
